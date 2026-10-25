@@ -1,0 +1,10 @@
+# Overlay image: official AzuraCast + frontend rebuilt from this fork (Web DJ crackling fix).
+FROM node:lts AS frontend
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --include=dev
+COPY . .
+RUN NODE_ENV=production npm run build
+
+FROM ghcr.io/azuracast/azuracast:latest
+COPY --from=frontend --chown=azuracast:azuracast /app/web/static/vite_dist /var/azuracast/www/web/static/vite_dist
