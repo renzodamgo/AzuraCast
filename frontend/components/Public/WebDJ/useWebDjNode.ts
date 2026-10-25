@@ -12,7 +12,7 @@ export const [useProvideWebDjNode, useInjectWebDjNode] =
         const bitrate = ref(128);
         const sampleRate = ref(44100);
         const channelCount = ref(2);
-        const bufferSize = ref(256);
+        const bufferSize = ref(4096);
 
         const context = computed(() => {
             return new AudioContext({

@@ -82,6 +82,9 @@ release channel, you can take advantage of these new features and fixes.
 
 ## Bug Fixes
 
+- Reduced crackling and distortion in the Web DJ, especially in Chromium-based browsers: browser audio processing (echo
+  cancellation, noise suppression, auto gain) is no longer applied to the microphone, and the audio buffer was enlarged.
+
 - Fixed several issues when saving media metadata to files:
     - Tags that AzuraCast doesn't manage (like ReplayGain, MusicBrainz IDs or dates) are no longer removed.
     - Existing album art is no longer replaced on every save.

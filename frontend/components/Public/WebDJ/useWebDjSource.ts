@@ -76,6 +76,9 @@ export function useWebDjSource() {
                 video: false,
                 audio: {
                     deviceId: audioDeviceId,
+                    echoCancellation: false,
+                    noiseSuppression: false,
+                    autoGainControl: false,
                 },
             });
 
