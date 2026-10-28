@@ -255,7 +255,7 @@ const seekingPosition = computed({
 
 // Factor in mixer and local gain to calculate total gain.
 const localGain = ref(55);
-const { mixer } = useInjectMixer();
+const { mixer, duckFactor } = useInjectMixer();
 
 const computedGain = computed(() => {
     let multiplier: number;
@@ -265,7 +265,7 @@ const computedGain = computed(() => {
         multiplier = mixer.value < 1 ? mixer.value : 1.0;
     }
 
-    return localGain.value * multiplier;
+    return localGain.value * multiplier * duckFactor.value;
 });
 watch(
     computedGain,

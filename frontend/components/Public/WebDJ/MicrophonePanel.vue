@@ -87,6 +87,7 @@ import { ref, watch } from "vue";
 import { usePassthroughSync } from "~/components/Public/WebDJ/usePassthroughSync";
 import { useWebDjSource } from "~/components/Public/WebDJ/useWebDjSource";
 import { useWebDjTrack } from "~/components/Public/WebDJ/useWebDjTrack";
+import { useInjectMixer } from "~/components/Public/WebDJ/useMixerValue";
 import VolumeSlider from "~/components/Public/WebDJ/VolumeSlider.vue";
 import IconIcMic from "~icons/ic/baseline-mic";
 
@@ -101,6 +102,16 @@ const {
 } = useWebDjTrack();
 
 const { createMicrophoneSource } = useWebDjSource();
+
+const { micLevel } = useInjectMixer();
+watch(volume, (newVolume) => {
+    micLevel.value = newVolume;
+});
+watch(isPlaying, (playing) => {
+    if (!playing) {
+        micLevel.value = 0;
+    }
+});
 
 usePassthroughSync(trackPassThrough, "microphone");
 
