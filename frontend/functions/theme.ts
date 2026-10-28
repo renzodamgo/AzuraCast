@@ -15,11 +15,7 @@ export const useTheme = defineStore("global-theme", () => {
     const storedTheme = useOptionalStorage<Theme | null>("theme", null);
 
     const getPreferredTheme = (): Theme => {
-        return storedTheme.value
-            ? storedTheme.value
-            : window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
+        return storedTheme.value ? storedTheme.value : "light";
     };
 
     const setTheme = (newTheme: Theme): void => {
